@@ -24,3 +24,9 @@ class LibraryRepository:
 
     def get_publisher_by_id(self, publisher_id: int) -> PublisherModel | None:
         return self.db.query(PublisherModel).filter(PublisherModel.id == publisher_id).first()
+    
+    def create_publisher(self, publisher: PublisherModel) -> PublisherModel:
+        self.db.add(publisher)
+        self.db.commit()
+        self.db.refresh(publisher)
+        return publisher

@@ -1,13 +1,13 @@
 from fastapi import FastAPI
 from strawberry.fastapi import GraphQLRouter
 from db import SessionLocal
+from repository import LibraryRepository
 from schema import schema
 
 def get_context():
     db = SessionLocal()
     try:
-        yield {"db": db}
-        print("Context created with db session")
+        yield {"repo": LibraryRepository(db)}
     finally:
         db.close()
 
