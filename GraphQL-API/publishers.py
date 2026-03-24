@@ -2,13 +2,14 @@ import typing as t
 import strawberry 
 from models import PublisherModel
 from repository import LibraryRepository
+from strawberry.types import Info
 
 @strawberry.type
 class Publisher:
     id: int
     name: str
 
-def get_publishers(info) -> t.List[Publisher]:
+def get_publishers(info: Info) -> t.List[Publisher]:
     db = info.context["db"]
     repo = LibraryRepository(db)
 

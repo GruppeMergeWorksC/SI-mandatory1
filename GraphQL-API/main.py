@@ -7,6 +7,7 @@ def get_context():
     db = SessionLocal()
     try:
         yield {"db": db}
+        print("Context created with db session")
     finally:
         db.close()
 
