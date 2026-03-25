@@ -33,6 +33,23 @@ class LibraryRepository:
     def author_exists_by_id(self, id: int) -> bool:
         return self.db.query(AuthorModel.id).filter(AuthorModel.id == id).first() is not None
 
+    def create_author(self, author: AuthorModel) -> AuthorModel:
+        self.db.add(author)
+        self.db.commit()
+        self.db.refresh(author)
+        return author
+    
+    def update_author(self, author: AuthorModel) -> AuthorModel:
+        self.db.commit()
+        self.db.refresh(author)
+        return author
+
+    def delete_author(self, id: int) -> AuthorModel | None:
+        author = self.get_author_by_id(id)
+        self.db.delete(author)
+        self.db.commit()
+        return author
+
     # publishers
     def get_publishers(self) -> list[PublisherModel]:
         return self.db.query(PublisherModel).all()
@@ -45,6 +62,11 @@ class LibraryRepository:
 
     def create_publisher(self, publisher: PublisherModel) -> PublisherModel:
         self.db.add(publisher)
+        self.db.commit()
+        self.db.refresh(publisher)
+        return publisher
+    
+    def update_publisher(self, publisher: PublisherModel) -> PublisherModel:
         self.db.commit()
         self.db.refresh(publisher)
         return publisher

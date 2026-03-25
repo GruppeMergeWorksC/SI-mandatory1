@@ -41,10 +41,9 @@ class Mutation:
 
         publisher = repo.get_publisher_by_id(id)
         publisher.name = name
-        repo.db.commit()
-        repo.db.refresh(publisher)
+        updated = repo.update_publisher(publisher)
 
-        return Publisher(id=publisher.id, name=publisher.name)
+        return Publisher(id=updated.id, name=updated.name)
 
     @strawberry.mutation(description="Delete publisher by ID")
     def delete_publisher(self, info: Info, id: int) -> Publisher:

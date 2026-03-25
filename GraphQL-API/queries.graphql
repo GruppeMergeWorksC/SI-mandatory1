@@ -17,8 +17,36 @@ mutation {
 }
 
 mutation {
-  updatePublisher(id: 1, name: "Updated Publisher Name") {
+  updatePublisher(id: 1, name: "Super Duper Publishing House") {
     id
     name
+  }
+}
+
+query {
+  authors {id, name, surname}
+}
+
+mutation {
+  updateAuthor(id: 1, name: "John") {
+    id
+    name
+    surname
+  }
+}
+
+mutation {
+  updateAuthor(id: 1, name: "Jack", surname: "Johnsson") {
+    id
+    name
+    surname
+  }
+}
+
+mutation {
+  createAuthor(name: "John", surname: "Doe") {
+    id
+    name
+    surname
   }
 }
