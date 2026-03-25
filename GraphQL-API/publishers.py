@@ -19,6 +19,9 @@ def get_publishers(info: Info) -> t.List[Publisher]:
 class Query:
     publishers: t.List[Publisher] = strawberry.field(description="List of all publishers", resolver=get_publishers)
 
+def publisher_exists_or_error(repo, id: int):
+    if not repo.publisher_exists_by_id(id):
+        raise ValueError(f"Publisher with ID {id} not found")
 
 @strawberry.type
 class Mutation:
@@ -29,18 +32,27 @@ class Mutation:
         saved = repo.create_publisher(new)
 
         return Publisher(id=saved.id, name=saved.name)
+    
+    @strawberry.mutation(description="Update publisher by ID")
+    def update_publisher(self, info: Info, id: int, name: str) -> Publisher:
+        repo = info.context["repo"]
+
+        publisher_exists_or_error(repo, id)
+
+        publisher = repo.get_publisher_by_id(id)
+        publisher.name = name
+        repo.db.commit()
+        repo.db.refresh(publisher)
+
+        return Publisher(id=publisher.id, name=publisher.name)
 
     @strawberry.mutation(description="Delete publisher by ID")
     def delete_publisher(self, info: Info, id: int) -> Publisher:
         repo = info.context["repo"]
-        publisher = repo.get_publisher_by_id(id)  # Check if publisher exists before attempting to delete
 
-        if not publisher:
-            raise ValueError(f"Publisher with ID {id} not found")
-        
-        # if Publisher has books in database, refuse deleting Publisher and raise error
-        books = repo.get_books_by_publisher_id(id)
-        if books:
+        publisher_exists_or_error(repo, id)
+
+        if repo.publisher_has_books(id): 
             raise ValueError(f"Publisher with ID {id} has books and cannot be deleted")
         
         deleted = repo.delete_publisher(id)

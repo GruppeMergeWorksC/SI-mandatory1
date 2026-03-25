@@ -1,0 +1,24 @@
+query getPublishers {
+  publishers {id, name}
+}
+
+mutation createPublisher {
+  createPublisher(name: "Tusk Love Publisher") {
+    id
+    name
+  }
+}
+
+mutation {
+  deletePublisher(id: 1) {
+    id
+    name
+  }
+}
+
+mutation {
+  updatePublisher(id: 1, name: "Updated Publisher Name") {
+    id
+    name
+  }
+}
