@@ -23,6 +23,12 @@ class LibraryRepository:
     def author_has_books(self, author_id: int) -> bool:
         return self.db.query(BookModel.id).filter(BookModel.author_id == author_id).first() is not None
 
+    def delete_book(self, id: int) -> BookModel | None:
+        book = self.get_book_by_id(id)
+        self.db.delete(book)
+        self.db.commit()
+        return book
+
     # authors
     def get_authors(self) -> list[AuthorModel]:
         return self.db.query(AuthorModel).all()

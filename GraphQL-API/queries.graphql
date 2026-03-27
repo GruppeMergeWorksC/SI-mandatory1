@@ -50,3 +50,41 @@ mutation {
     surname
   }
 }
+
+mutation {
+  deleteAuthor(id:512) {
+    name
+  }
+}
+
+query {
+  books {
+    id
+    title
+    author {
+      name
+      surname
+    }
+    publishingYear
+    publisher {
+      name
+    }
+  }
+}
+
+query getBooks {
+  books {
+    id
+    title
+    author {
+      name
+      surname
+    }
+  }
+}
+
+mutation {
+  deleteBook(id:1000) {
+    title
+  }
+}

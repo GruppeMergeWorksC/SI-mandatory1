@@ -44,10 +44,9 @@ class Mutation:
         if surname is not None:
             author.surname = surname
 
-        repo.db.commit()
-        repo.db.refresh(author)
+        updated = repo.update_author(author)
 
-        return Author(id=author.id, name=author.name, surname=author.surname)
+        return Author(id=updated.id, name=updated.name, surname=updated.surname)
 
     @strawberry.mutation(description="Delete author by ID")
     def delete_author(self, info: Info, id: int) -> Author:

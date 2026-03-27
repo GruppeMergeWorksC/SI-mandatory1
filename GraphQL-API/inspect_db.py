@@ -11,3 +11,6 @@ print(cursor.execute("PRAGMA table_info(tbook)").fetchall())
 
 print(cursor.execute("PRAGMA table_info(tpublishingcompany)").fetchall())
 # [(0, 'nPublishingCompanyID', 'INTEGER', 1, None, 1), (1, 'cName', 'varchar(40)', 1, None, 0)]
+
+#None, 1 = NOT NULL
+#None, 0 = nullable
