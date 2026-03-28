@@ -19,9 +19,11 @@ def get_authors(info: Info) -> t.List[Author]:
 class Query:
     authors: t.List[Author] = strawberry.field(description="List of all authors", resolver=get_authors)
 
-def author_exists_or_error(repo, id: int):
-    if not repo.author_exists_by_id(id):
+def get_author_or_error(repo, id: int) -> AuthorModel:
+    author = repo.get_author_by_id(id)
+    if not author:
         raise ValueError(f"Author with ID {id} not found")
+    return author
 
 @strawberry.type
 class Mutation:
@@ -37,9 +39,7 @@ class Mutation:
     def update_author(self, info: Info, id: int, name: str, surname: str | None = None) -> Author:
         repo = info.context["repo"]
 
-        author_exists_or_error(repo, id)
-
-        author = repo.get_author_by_id(id)
+        author = get_author_or_error(repo, id)
         author.name = name
         if surname is not None:
             author.surname = surname
@@ -52,11 +52,11 @@ class Mutation:
     def delete_author(self, info: Info, id: int) -> Author:
         repo = info.context["repo"]
 
-        author_exists_or_error(repo, id)
+        author = get_author_or_error(repo, id)
 
         if repo.author_has_books(id):
             raise ValueError(f"Author with ID {id} has books and cannot be deleted")
 
-        deleted = repo.delete_author(id)
+        repo.delete_author(author)
 
-        return Author(id=deleted.id, name=deleted.name, surname=deleted.surname)
+        return author

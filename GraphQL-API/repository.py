@@ -23,8 +23,7 @@ class LibraryRepository:
     def author_has_books(self, author_id: int) -> bool:
         return self.db.query(BookModel.id).filter(BookModel.author_id == author_id).first() is not None
 
-    def delete_book(self, id: int) -> BookModel | None:
-        book = self.get_book_by_id(id)
+    def delete_book(self, book: BookModel) -> BookModel | None:
         self.db.delete(book)
         self.db.commit()
         return book
@@ -50,8 +49,7 @@ class LibraryRepository:
         self.db.refresh(author)
         return author
 
-    def delete_author(self, id: int) -> AuthorModel | None:
-        author = self.get_author_by_id(id)
+    def delete_author(self, author: AuthorModel) -> AuthorModel | None:
         self.db.delete(author)
         self.db.commit()
         return author
@@ -77,8 +75,7 @@ class LibraryRepository:
         self.db.refresh(publisher)
         return publisher
     
-    def delete_publisher(self, id: int) -> PublisherModel | None:
-        publisher = self.get_publisher_by_id(id)
+    def delete_publisher(self, publisher: PublisherModel) -> PublisherModel | None:
         self.db.delete(publisher)
         self.db.commit()
         return publisher

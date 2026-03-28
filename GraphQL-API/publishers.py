@@ -19,9 +19,11 @@ def get_publishers(info: Info) -> t.List[Publisher]:
 class Query:
     publishers: t.List[Publisher] = strawberry.field(description="List of all publishers", resolver=get_publishers)
 
-def publisher_exists_or_error(repo, id: int):
-    if not repo.publisher_exists_by_id(id):
+def get_publisher_or_error(repo, id: int) -> PublisherModel:
+    publisher = repo.get_publisher_by_id(id)
+    if not publisher:
         raise ValueError(f"Publisher with ID {id} not found")
+    return publisher
 
 @strawberry.type
 class Mutation:
@@ -37,23 +39,21 @@ class Mutation:
     def update_publisher(self, info: Info, id: int, name: str) -> Publisher:
         repo = info.context["repo"]
 
-        publisher_exists_or_error(repo, id)
-
-        publisher = repo.get_publisher_by_id(id)
+        publisher = get_publisher_or_error(repo, id)
         publisher.name = name
         updated = repo.update_publisher(publisher)
 
-        return Publisher(id=updated.id, name=updated.name)
+        return updated
 
     @strawberry.mutation(description="Delete publisher by ID")
     def delete_publisher(self, info: Info, id: int) -> Publisher:
         repo = info.context["repo"]
 
-        publisher_exists_or_error(repo, id)
+        publisher = get_publisher_or_error(repo, id)
 
         if repo.publisher_has_books(id): 
             raise ValueError(f"Publisher with ID {id} has books and cannot be deleted")
         
-        deleted = repo.delete_publisher(id)
+        deleted = repo.delete_publisher(publisher)
 
         return Publisher(id=deleted.id, name=deleted.name)

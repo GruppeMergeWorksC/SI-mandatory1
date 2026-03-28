@@ -54,6 +54,7 @@ mutation {
 mutation {
   deleteAuthor(id:512) {
     name
+    surname
   }
 }
 

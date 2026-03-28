@@ -47,9 +47,11 @@ class Mutation:
 
         book_exists_or_error(repo, id)
 
-        model = repo.get_book_by_id(id)
+        model = repo.get_book_by_id(id)  
+              
+        book = to_book_type(model)
 
-        repo.delete_book(id)
+        repo.delete_book(model)
 
-        return model
+        return book
     
