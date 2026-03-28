@@ -14,6 +14,9 @@ class LibraryRepository:
     def book_exists_by_id(self, id: int) -> bool:
         return self.db.query(BookModel.id).filter(BookModel.id == id).first() is not None
     
+    def book_exists_by_title_and_author(self, title: str, author_id: int) -> bool:
+        return self.db.query(BookModel.id).filter(BookModel.title == title, BookModel.author_id == author_id).first() is not None
+
     def get_books_by_publisher_id(self, id: int) -> list[BookModel]:
         return self.db.query(BookModel).filter(BookModel.publisher_id == id).all()
     

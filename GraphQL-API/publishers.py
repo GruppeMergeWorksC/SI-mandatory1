@@ -9,10 +9,13 @@ class Publisher:
     id: int
     name: str
 
+def to_publisher_type(model: PublisherModel) -> Publisher:
+    return Publisher(id=model.id, name=model.name)
+
 def get_publishers(info: Info) -> t.List[Publisher]:
     repo = info.context["repo"]  # Access the repository from the context  
     publishers = repo.get_publishers()
-    return [Publisher(id=p.id, name=p.name) for p in publishers]
+    return [to_publisher_type(p) for p in publishers]
 
 def get_publisher_or_error(repo, id: int) -> PublisherModel:
     publisher = repo.get_publisher_by_id(id)
@@ -38,7 +41,7 @@ class Mutation:
         new = PublisherModel(name=name)
         saved = repo.create_publisher(new)
 
-        return Publisher(id=saved.id, name=saved.name)
+        return to_publisher_type(saved)
     
     @strawberry.mutation(description="Update publisher by ID")
     def update_publisher(self, info: Info, id: int, name: str) -> Publisher:
@@ -48,7 +51,7 @@ class Mutation:
         publisher.name = name
         updated = repo.update_publisher(publisher)
 
-        return updated
+        return to_publisher_type(updated)
 
     @strawberry.mutation(description="Delete publisher by ID")
     def delete_publisher(self, info: Info, id: int) -> Publisher:
@@ -61,4 +64,4 @@ class Mutation:
         
         deleted = repo.delete_publisher(publisher)
 
-        return Publisher(id=deleted.id, name=deleted.name)
+        return to_publisher_type(deleted)

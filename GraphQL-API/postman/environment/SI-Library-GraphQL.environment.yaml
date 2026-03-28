@@ -1,0 +1,14 @@
+name: SI-Library-GraphQL
+values:
+  - key: baseUrl
+    value: 'http://localhost:8080/graphql'
+    enabled: true
+  - key: bookId
+    value: ''
+    enabled: true
+  - key: authorId
+    value: ''
+    enabled: true
+  - key: authorIdDel
+    value: ''
+    enabled: true

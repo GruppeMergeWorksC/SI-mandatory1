@@ -1,0 +1,24 @@
+$kind: graphql-request
+name: delete-book
+url: "{{baseUrl}}"
+query: |
+  mutation DeleteBook ($id: Int!){
+      deleteBook(id: $id) {
+          id
+          title
+          publishingYear
+          author {
+              id
+              name
+              surname
+          }
+          publisher {
+              id
+              name
+          }
+      }
+  }
+variables: "{\r\n    \"id\":{{bookId}}\r\n}"
+schema:
+  source: auto
+order: 16000

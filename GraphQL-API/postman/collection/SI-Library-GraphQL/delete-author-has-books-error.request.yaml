@@ -1,0 +1,15 @@
+$kind: graphql-request
+name: delete-author-has-books-error
+url: "{{baseUrl}}"
+query: |
+  mutation DeleteAuthor {
+      deleteAuthor(id: 467) {
+          id
+          name
+          surname
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 19000

@@ -1,0 +1,28 @@
+$kind: graphql-request
+name: update-book-author-not-found
+url: "{{baseUrl}}"
+query: |
+  mutation UpdateBook {
+      updateBook(
+          id: 1003
+          title: "The Rights and Privileges of Cats"
+          authorId: 1000000
+          publisherId: 1
+          publishingYear: 2026
+      ) {
+          id
+          title
+          publishingYear
+          author {
+              name
+              surname
+          }
+          publisher {
+              name
+          }
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 14101

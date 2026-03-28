@@ -1,0 +1,38 @@
+$kind: graphql-request
+name: create-book-already-exists
+url: "{{baseUrl}}"
+query: |
+  mutation CreateBook {
+      createBook(
+          title: "The Hobbit"
+          authorId: 467
+          publisherId: 148
+          publishingYear: 1954
+      ) {
+          id
+          title
+          publishingYear
+          author {
+              id
+              surname
+              name
+       
+          }
+          publisher {
+              id
+              name
+          }
+      }
+  }
+variables: ""
+schema:
+  source: auto
+scripts:
+  - type: afterResponse
+    code: "const response = pm.response.data;\r
+
+      pm.environment.set(\"bookId\", response.createBook.id);\r
+
+      console.log(\"bookId:\", pm.environment.get(\"abookId\"));"
+    language: text/javascript
+order: 11000

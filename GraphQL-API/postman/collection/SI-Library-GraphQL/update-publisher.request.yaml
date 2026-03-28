@@ -1,0 +1,14 @@
+$kind: graphql-request
+name: update-publisher
+url: "{{baseUrl}}"
+query: >
+  mutation UpdatePublisher ($id: Int!) {
+      updatePublisher(id: $id, name: "Evermore Purrfect Publishing Collective") {
+          id
+          name
+      }
+  }
+variables: "{\r\n  \"id\": {{publisherId}}\r\n}"
+schema:
+  source: auto
+order: 13000

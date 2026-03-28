@@ -1,0 +1,14 @@
+$kind: graphql-request
+name: get-all-publishers
+url: "{{baseUrl}}"
+query: |
+  query Publishers {
+      publishers {
+          id
+          name
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 3000

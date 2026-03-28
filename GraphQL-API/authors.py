@@ -3,6 +3,14 @@ import strawberry
 from models import AuthorModel
 from strawberry.types import Info
 
+@strawberry.type
+class Author:
+    id: int
+    name: str
+    surname: str | None
+
+def to_author_type(model: AuthorModel) -> Author:
+    return Author(id=model.id, name=model.name, surname=model.surname)
 
 def get_author_or_error(repo, id: int) -> AuthorModel:
     author = repo.get_author_by_id(id)
@@ -14,16 +22,10 @@ def if_author_already_exists_error(repo, name, surname):
     if repo.author_exists_by_name(name, surname):
         raise ValueError(f"Author with name {name} and surname {surname} already exists")
 
-@strawberry.type
-class Author:
-    id: int
-    name: str
-    surname: str | None
-
 def get_authors(info: Info) -> t.List[Author]:
     repo = info.context["repo"]
     authors = repo.get_authors()
-    return [Author(id=a.id, name=a.name, surname=a.surname) for a in authors]
+    return [to_author_type(a) for a in authors]
 
 @strawberry.type
 class Query:
@@ -40,7 +42,7 @@ class Mutation:
         new = AuthorModel(name=name, surname=surname)
         saved = repo.create_author(new)
 
-        return Author(id=saved.id, name=saved.name, surname=saved.surname)
+        return to_author_type(saved)
 
     @strawberry.mutation(description="Update author by ID")
     def update_author(self, info: Info, id: int, name: str, surname: str | None = None) -> Author:
@@ -53,7 +55,7 @@ class Mutation:
 
         updated = repo.update_author(author)
 
-        return Author(id=updated.id, name=updated.name, surname=updated.surname)
+        return to_author_type(updated)
 
     @strawberry.mutation(description="Delete author by ID")
     def delete_author(self, info: Info, id: int) -> Author:

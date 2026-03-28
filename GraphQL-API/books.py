@@ -39,6 +39,10 @@ def author_exists_or_error(author_id, repo):
 def publisher_exists_or_error(publisher_id, repo):
     if not repo.publisher_exists_by_id(publisher_id):
         raise ValueError(f"Publisher with ID {publisher_id} not found")
+    
+def book_already_exists_error(repo, title, author_id):
+    if repo.book_exists_by_title_and_author(title, author_id):
+        raise ValueError(f"Book with title {title} and author ID {author_id} already exists")
 
 def get_book_by_id(info: Info, id: int) -> Book:
     repo = info.context["repo"]
@@ -56,8 +60,7 @@ class Mutation:
     @strawberry.mutation(description="Create a new book")
     def create_book(self, info: Info, title: str, author_id: int, publishing_year: int | None, publisher_id: int) -> Book:
         repo = info.context["repo"]
-
-        author_exists_or_error(author_id, repo)
+        book_already_exists_error(repo, title, author_id)
         publisher_exists_or_error(publisher_id, repo)
 
         new = BookModel(title=title, author_id=author_id, publishing_year=publishing_year, publisher_id=publisher_id)

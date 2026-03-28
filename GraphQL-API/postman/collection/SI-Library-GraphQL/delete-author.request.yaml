@@ -1,0 +1,15 @@
+$kind: graphql-request
+name: delete-author
+url: "{{baseUrl}}"
+query: |
+  mutation DeleteAuthor ($id: Int!){
+      deleteAuthor(id: $id) {
+          id
+          name
+          surname
+      }
+  }
+variables: "{\r\n    \"id\":{{authorIdDel}}\r\n}"
+schema:
+  source: auto
+order: 20000

@@ -1,0 +1,24 @@
+$kind: graphql-request
+name: get-book-by-id-not-found
+url: "{{baseUrl}}"
+query: |
+  query Book {
+      book(id: 1000000000) {
+          id
+          title
+          publishingYear
+          author {
+              id
+              name
+              surname
+          }
+          publisher {
+              id
+              name
+          }
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 4000
