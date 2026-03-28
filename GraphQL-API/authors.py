@@ -4,6 +4,16 @@ from models import AuthorModel
 from strawberry.types import Info
 
 
+def get_author_or_error(repo, id: int) -> AuthorModel:
+    author = repo.get_author_by_id(id)
+    if not author:
+        raise ValueError(f"Author with ID {id} not found")
+    return author
+
+def if_author_already_exists_error(repo, name, surname):
+    if repo.author_exists_by_name(name, surname):
+        raise ValueError(f"Author with name {name} and surname {surname} already exists")
+
 @strawberry.type
 class Author:
     id: int
@@ -19,17 +29,14 @@ def get_authors(info: Info) -> t.List[Author]:
 class Query:
     authors: t.List[Author] = strawberry.field(description="List of all authors", resolver=get_authors)
 
-def get_author_or_error(repo, id: int) -> AuthorModel:
-    author = repo.get_author_by_id(id)
-    if not author:
-        raise ValueError(f"Author with ID {id} not found")
-    return author
-
 @strawberry.type
 class Mutation:
     @strawberry.mutation(description="Create a new author")
     def create_author(self, info: Info, name: str, surname: str | None = None) -> Author:
         repo = info.context["repo"]
+
+        if_author_already_exists_error(repo, name, surname)
+
         new = AuthorModel(name=name, surname=surname)
         saved = repo.create_author(new)
 

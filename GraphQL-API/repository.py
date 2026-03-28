@@ -23,6 +23,17 @@ class LibraryRepository:
     def author_has_books(self, author_id: int) -> bool:
         return self.db.query(BookModel.id).filter(BookModel.author_id == author_id).first() is not None
 
+    def create_book(self, book: BookModel) -> BookModel:
+        self.db.add(book)
+        self.db.commit()
+        self.db.refresh(book)
+        return book
+    
+    def update_book(self, book: BookModel) -> BookModel:
+        self.db.commit()
+        self.db.refresh(book)
+        return book
+
     def delete_book(self, book: BookModel) -> BookModel | None:
         self.db.delete(book)
         self.db.commit()
@@ -37,6 +48,14 @@ class LibraryRepository:
 
     def author_exists_by_id(self, id: int) -> bool:
         return self.db.query(AuthorModel.id).filter(AuthorModel.id == id).first() is not None
+
+    def author_exists_by_name(self, name: str, surname: str | None) -> bool:
+        query = self.db.query(AuthorModel.id).filter(AuthorModel.name == name)
+        if surname is not None:
+            query = query.filter(AuthorModel.surname == surname)
+        else:
+            query = query.filter(AuthorModel.surname.is_(None))
+        return query.first() is not None
 
     def create_author(self, author: AuthorModel) -> AuthorModel:
         self.db.add(author)
@@ -63,6 +82,9 @@ class LibraryRepository:
     
     def publisher_exists_by_id(self, id: int) -> bool:
         return self.db.query(PublisherModel.id).filter(PublisherModel.id == id).first() is not None
+
+    def publisher_exists_by_name(self, name: str) -> bool:
+        return self.db.query(PublisherModel.id).filter(PublisherModel.name == name).first() is not None
 
     def create_publisher(self, publisher: PublisherModel) -> PublisherModel:
         self.db.add(publisher)

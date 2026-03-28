@@ -2,9 +2,11 @@ annotated-doc==0.0.4
 annotated-types==0.7.0
 anyio==4.12.1
 click==8.3.1
+colorama==0.4.6
 cross-web==0.4.1
 fastapi==0.135.1
 graphql-core==3.2.8
+greenlet==3.3.2
 h11==0.16.0
 idna==3.11
 packaging==26.0
@@ -12,6 +14,7 @@ pydantic==2.12.5
 pydantic_core==2.41.5
 python-dateutil==2.9.0.post0
 six==1.17.0
+SQLAlchemy==2.0.48
 starlette==0.52.1
 strawberry-graphql==0.311.1
 typing-inspection==0.4.2

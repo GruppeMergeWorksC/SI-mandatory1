@@ -44,7 +44,7 @@ mutation {
 }
 
 mutation {
-  createAuthor(name: "John", surname: "Doe") {
+  createAuthor(name: "Kitty", surname: "McMeowser") {
     id
     name
     surname
@@ -80,6 +80,38 @@ query getBooks {
     author {
       name
       surname
+    }
+  }
+}
+
+query getBookById {
+  book(id:1010) {
+    title
+    author {
+      name
+      surname
+    }
+  }
+}
+
+mutation {
+  createBook(
+    title: "How to Entertain Your Kitten",
+    authorId: 1,
+    publisherId: 1,
+    publishingYear: 2024
+  ) {
+    id
+    title
+    publishingYear
+    author {
+      id
+      name
+      surname
+    }
+    publisher {
+      id
+      name
     }
   }
 }
