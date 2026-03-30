@@ -23,6 +23,8 @@ mutation {
   }
 }
 
+# AUTHORS
+
 query {
   authors {id, name, surname}
 }
@@ -57,6 +59,8 @@ mutation {
     surname
   }
 }
+
+# BOOKS 
 
 query {
   books {
