@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="https://soapapi.com/library" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="https://soapapi.com/library" targetNamespace="https://soapapi.com/library">
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="https://soapapi.com/library">
+            <xs:complexType name="Book">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="title" type="xs:string"/>
+                    <xs:element name="authorId" type="xs:long"/>
+                    <xs:element name="publishingCompanyId" type="xs:long"/>
+                    <xs:element name="publicationYear" type="tns:pubYear"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:simpleType name="pubYear">
+                <xs:restriction base="xs:integer">
+                    <xs:minInclusive value="1900"/>
+                </xs:restriction>
+            </xs:simpleType>
+            <xs:complexType name="Author">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="name" type="xs:string"/>
+                    <xs:element name="surname" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:complexType name="PublishingCompany">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="name" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+            <xs:element name="createBookRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="title" type="xs:string"/>
+                        <xs:element name="authorId" type="xs:long"/>
+                        <xs:element name="publishingCompanyId" type="xs:long"/>
+                        <xs:element name="publicationYear" type="tns:pubYear"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createBookResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="bookId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookByIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getBookByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="book" type="tns:Book"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateBookRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element minOccurs="0" name="title" type="xs:string"/>
+                        <xs:element minOccurs="0" name="authorId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="publishingCompanyId" type="xs:long"/>
+                        <xs:element minOccurs="0" name="publicationYear" type="tns:pubYear"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateBookResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteBookRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteBookResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createAuthorRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                        <xs:element name="surname" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createAuthorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="authorId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAuthorByIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getAuthorByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="author" type="tns:Author"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="listAuthorsRequest">
+                <xs:complexType/>
+            </xs:element>
+            <xs:element name="listAuthorsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="authors" type="tns:Author"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAuthorRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element minOccurs="0" name="name" type="xs:string"/>
+                        <xs:element minOccurs="0" name="surname" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updateAuthorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteAuthorRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deleteAuthorResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPublishingCompanyRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="createPublishingCompanyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="publishingCompanyId" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPublishingCompanyByIdRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="getPublishingCompanyByIdResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="publishingCompany" type="tns:PublishingCompany"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="listPublishingCompaniesRequest" type="xs:anyType"/>
+            <xs:element name="listPublishingCompaniesResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="publishingCompanies" type="tns:PublishingCompany"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePublishingCompanyRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                        <xs:element minOccurs="0" name="name" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="updatePublishingCompanyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePublishingCompanyRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="deletePublishingCompanyResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="success" type="xs:boolean"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ValidationFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="NotFoundFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="ConflictFault">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="message" type="xs:string"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="getPublishingCompanyByIdResponse">
+        <wsdl:part element="tns:getPublishingCompanyByIdResponse" name="getPublishingCompanyByIdResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deletePublishingCompanyRequest">
+        <wsdl:part element="tns:deletePublishingCompanyRequest" name="deletePublishingCompanyRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="listPublishingCompaniesRequest">
+        <wsdl:part element="tns:listPublishingCompaniesRequest" name="listPublishingCompaniesRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="listAuthorsRequest">
+        <wsdl:part element="tns:listAuthorsRequest" name="listAuthorsRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deleteAuthorRequest">
+        <wsdl:part element="tns:deleteAuthorRequest" name="deleteAuthorRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updatePublishingCompanyRequest">
+        <wsdl:part element="tns:updatePublishingCompanyRequest" name="updatePublishingCompanyRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createPublishingCompanyResponse">
+        <wsdl:part element="tns:createPublishingCompanyResponse" name="createPublishingCompanyResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateBookResponse">
+        <wsdl:part element="tns:updateBookResponse" name="updateBookResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getBookByIdRequest">
+        <wsdl:part element="tns:getBookByIdRequest" name="getBookByIdRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deleteBookRequest">
+        <wsdl:part element="tns:deleteBookRequest" name="deleteBookRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ValidationFault">
+        <wsdl:part element="tns:ValidationFault" name="ValidationFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAuthorByIdResponse">
+        <wsdl:part element="tns:getAuthorByIdResponse" name="getAuthorByIdResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createBookResponse">
+        <wsdl:part element="tns:createBookResponse" name="createBookResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createAuthorResponse">
+        <wsdl:part element="tns:createAuthorResponse" name="createAuthorResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deletePublishingCompanyResponse">
+        <wsdl:part element="tns:deletePublishingCompanyResponse" name="deletePublishingCompanyResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updatePublishingCompanyResponse">
+        <wsdl:part element="tns:updatePublishingCompanyResponse" name="updatePublishingCompanyResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="listPublishingCompaniesResponse">
+        <wsdl:part element="tns:listPublishingCompaniesResponse" name="listPublishingCompaniesResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="NotFoundFault">
+        <wsdl:part element="tns:NotFoundFault" name="NotFoundFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getAuthorByIdRequest">
+        <wsdl:part element="tns:getAuthorByIdRequest" name="getAuthorByIdRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ConflictFault">
+        <wsdl:part element="tns:ConflictFault" name="ConflictFault">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createPublishingCompanyRequest">
+        <wsdl:part element="tns:createPublishingCompanyRequest" name="createPublishingCompanyRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="listAuthorsResponse">
+        <wsdl:part element="tns:listAuthorsResponse" name="listAuthorsResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getPublishingCompanyByIdRequest">
+        <wsdl:part element="tns:getPublishingCompanyByIdRequest" name="getPublishingCompanyByIdRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createBookRequest">
+        <wsdl:part element="tns:createBookRequest" name="createBookRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="createAuthorRequest">
+        <wsdl:part element="tns:createAuthorRequest" name="createAuthorRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateAuthorRequest">
+        <wsdl:part element="tns:updateAuthorRequest" name="updateAuthorRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateBookRequest">
+        <wsdl:part element="tns:updateBookRequest" name="updateBookRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="updateAuthorResponse">
+        <wsdl:part element="tns:updateAuthorResponse" name="updateAuthorResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="getBookByIdResponse">
+        <wsdl:part element="tns:getBookByIdResponse" name="getBookByIdResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deleteAuthorResponse">
+        <wsdl:part element="tns:deleteAuthorResponse" name="deleteAuthorResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="deleteBookResponse">
+        <wsdl:part element="tns:deleteBookResponse" name="deleteBookResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="LibraryPort">
+        <wsdl:operation name="getPublishingCompanyById">
+            <wsdl:input message="tns:getPublishingCompanyByIdRequest" name="getPublishingCompanyByIdRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getPublishingCompanyByIdResponse" name="getPublishingCompanyByIdResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePublishingCompany">
+            <wsdl:input message="tns:deletePublishingCompanyRequest" name="deletePublishingCompanyRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:deletePublishingCompanyResponse" name="deletePublishingCompanyResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listPublishingCompanies">
+            <wsdl:input message="tns:listPublishingCompaniesRequest" name="listPublishingCompaniesRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:listPublishingCompaniesResponse" name="listPublishingCompaniesResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listAuthors">
+            <wsdl:input message="tns:listAuthorsRequest" name="listAuthorsRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:listAuthorsResponse" name="listAuthorsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAuthor">
+            <wsdl:input message="tns:deleteAuthorRequest" name="deleteAuthorRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:deleteAuthorResponse" name="deleteAuthorResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updatePublishingCompany">
+            <wsdl:input message="tns:updatePublishingCompanyRequest" name="updatePublishingCompanyRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:updatePublishingCompanyResponse" name="updatePublishingCompanyResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPublishingCompany">
+            <wsdl:input message="tns:createPublishingCompanyRequest" name="createPublishingCompanyRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:createPublishingCompanyResponse" name="createPublishingCompanyResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateBook">
+            <wsdl:input message="tns:updateBookRequest" name="updateBookRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:updateBookResponse" name="updateBookResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBookById">
+            <wsdl:input message="tns:getBookByIdRequest" name="getBookByIdRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getBookByIdResponse" name="getBookByIdResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteBook">
+            <wsdl:input message="tns:deleteBookRequest" name="deleteBookRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:deleteBookResponse" name="deleteBookResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Validation">
+            <wsdl:fault message="tns:ValidationFault" name="ValidationFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAuthorById">
+            <wsdl:input message="tns:getAuthorByIdRequest" name="getAuthorByIdRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:getAuthorByIdResponse" name="getAuthorByIdResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createBook">
+            <wsdl:input message="tns:createBookRequest" name="createBookRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:createBookResponse" name="createBookResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createAuthor">
+            <wsdl:input message="tns:createAuthorRequest" name="createAuthorRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:createAuthorResponse" name="createAuthorResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="NotFound">
+            <wsdl:fault message="tns:NotFoundFault" name="NotFoundFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Conflict">
+            <wsdl:fault message="tns:ConflictFault" name="ConflictFault">
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAuthor">
+            <wsdl:input message="tns:updateAuthorRequest" name="updateAuthorRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:updateAuthorResponse" name="updateAuthorResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="LibraryPortSoap11" type="tns:LibraryPort">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getPublishingCompanyById">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getPublishingCompanyByIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getPublishingCompanyByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deletePublishingCompany">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deletePublishingCompanyRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="deletePublishingCompanyResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listPublishingCompanies">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="listPublishingCompaniesRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="listPublishingCompaniesResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="listAuthors">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="listAuthorsRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="listAuthorsResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteAuthor">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deleteAuthorRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="deleteAuthorResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updatePublishingCompany">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updatePublishingCompanyRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updatePublishingCompanyResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createPublishingCompany">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createPublishingCompanyRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createPublishingCompanyResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="updateBook">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updateBookRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateBookResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getBookById">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getBookByIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getBookByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="deleteBook">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="deleteBookRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="deleteBookResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="Validation">
+            <soap:operation soapAction=""/>
+            <wsdl:fault name="ValidationFault">
+                <soap:fault name="ValidationFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="getAuthorById">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="getAuthorByIdRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getAuthorByIdResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createBook">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createBookRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createBookResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="createAuthor">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="createAuthorRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="createAuthorResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="NotFound">
+            <soap:operation soapAction=""/>
+            <wsdl:fault name="NotFoundFault">
+                <soap:fault name="NotFoundFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="Conflict">
+            <soap:operation soapAction=""/>
+            <wsdl:fault name="ConflictFault">
+                <soap:fault name="ConflictFault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+        <wsdl:operation name="updateAuthor">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="updateAuthorRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="updateAuthorResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="LibraryPortService">
+        <wsdl:port binding="tns:LibraryPortSoap11" name="LibraryPortSoap11">
+            <soap:address location="/services"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
