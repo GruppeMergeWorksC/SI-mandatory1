@@ -1,0 +1,67 @@
+import typing as t
+import strawberry 
+from models import PublisherModel
+from strawberry.types import Info
+
+
+@strawberry.type
+class Publisher:
+    id: int
+    name: str
+
+def to_publisher_type(model: PublisherModel) -> Publisher:
+    return Publisher(id=model.id, name=model.name)
+
+def get_publishers(info: Info) -> t.List[Publisher]:
+    repo = info.context["repo"]  # Access the repository from the context  
+    publishers = repo.get_publishers()
+    return [to_publisher_type(p) for p in publishers]
+
+def get_publisher_or_error(repo, id: int) -> PublisherModel:
+    publisher = repo.get_publisher_by_id(id)
+    if not publisher:
+        raise ValueError(f"Publisher with ID {id} not found")
+    return publisher
+
+def if_publisher_already_exists_error(repo, name):
+    if repo.publisher_exists_by_name(name):
+        raise ValueError(f"Publisher with name {name} already exists")
+
+@strawberry.type
+class Query:
+    publishers: t.List[Publisher] = strawberry.field(description="List of all publishers", resolver=get_publishers)
+
+@strawberry.type
+class Mutation:
+    @strawberry.mutation(description="Create a new publisher")
+    def create_publisher(self, info: Info, name: str) -> Publisher:
+        repo = info.context["repo"]
+        if_publisher_already_exists_error(repo, name)
+
+        new = PublisherModel(name=name)
+        saved = repo.create_publisher(new)
+
+        return to_publisher_type(saved)
+    
+    @strawberry.mutation(description="Update publisher by ID")
+    def update_publisher(self, info: Info, id: int, name: str) -> Publisher:
+        repo = info.context["repo"]
+
+        publisher = get_publisher_or_error(repo, id)
+        publisher.name = name
+        updated = repo.update_publisher(publisher)
+
+        return to_publisher_type(updated)
+
+    @strawberry.mutation(description="Delete publisher by ID")
+    def delete_publisher(self, info: Info, id: int) -> Publisher:
+        repo = info.context["repo"]
+
+        publisher = get_publisher_or_error(repo, id)
+
+        if repo.publisher_has_books(id): 
+            raise ValueError(f"Publisher with ID {id} has books and cannot be deleted")
+        
+        deleted = repo.delete_publisher(publisher)
+
+        return to_publisher_type(deleted)

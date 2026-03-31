@@ -1,0 +1,22 @@
+$kind: graphql-request
+name: create-publisher
+url: "{{baseUrl}}"
+query: |
+  mutation CreatePublisher {
+      createPublisher(name: "Purrfect Publishers") {
+          id
+          name
+      }
+  }
+variables: ""
+schema:
+  source: auto
+scripts:
+  - type: afterResponse
+    code: "const response = pm.response.data;\r
+
+      pm.environment.set(\"publisherId\", response.createPublisher.id);\r
+
+      console.log(\"publisherId:\", pm.environment.get(\"publisherId\"));"
+    language: text/javascript
+order: 8000

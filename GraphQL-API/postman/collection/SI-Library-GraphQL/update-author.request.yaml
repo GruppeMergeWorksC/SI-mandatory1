@@ -1,0 +1,15 @@
+$kind: graphql-request
+name: update-author
+url: "{{baseUrl}}"
+query: |
+  mutation UpdateAuthor ($id: Int!) {
+      updateAuthor(id: $id, name: "Arthur", surname: "MacFluffington III") {
+          id
+          name
+          surname
+      }
+  }
+variables: "{\r\n  \"id\": {{authorId}}\r\n}"
+schema:
+  source: auto
+order: 12000

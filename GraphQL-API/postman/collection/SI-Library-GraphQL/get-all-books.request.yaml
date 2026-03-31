@@ -1,0 +1,24 @@
+$kind: graphql-request
+name: get-all-books
+url: "{{baseUrl}}"
+query: |
+  query Books {
+      books {
+          id
+          title
+          publishingYear
+          author {
+              name
+              surname
+              id
+          }
+          publisher {
+              name
+              id
+          }
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 2000

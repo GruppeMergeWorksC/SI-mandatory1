@@ -1,0 +1,15 @@
+$kind: graphql-request
+name: get-all-authors
+url: "{{baseUrl}}"
+query: |-
+  query Authors {
+      authors {
+          id
+          name
+          surname
+      }
+  }
+variables: ""
+schema:
+  source: auto
+order: 1000

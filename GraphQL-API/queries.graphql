@@ -1,0 +1,127 @@
+query getPublishers {
+  publishers {id, name}
+}
+
+mutation createPublisher {
+  createPublisher(name: "Tusk Love Publisher") {
+    id
+    name
+  }
+}
+
+mutation {
+  deletePublisher(id: 1) {
+    id
+    name
+  }
+}
+
+mutation {
+  updatePublisher(id: 1, name: "Super Duper Publishing House") {
+    id
+    name
+  }
+}
+
+# AUTHORS
+
+query {
+  authors {id, name, surname}
+}
+
+mutation {
+  updateAuthor(id: 1, name: "John") {
+    id
+    name
+    surname
+  }
+}
+
+mutation {
+  updateAuthor(id: 1, name: "Jack", surname: "Johnsson") {
+    id
+    name
+    surname
+  }
+}
+
+mutation {
+  createAuthor(name: "Kitty", surname: "McMeowser") {
+    id
+    name
+    surname
+  }
+}
+
+mutation {
+  deleteAuthor(id:512) {
+    name
+    surname
+  }
+}
+
+# BOOKS 
+
+query {
+  books {
+    id
+    title
+    author {
+      name
+      surname
+    }
+    publishingYear
+    publisher {
+      name
+    }
+  }
+}
+
+query getBooks {
+  books {
+    id
+    title
+    author {
+      name
+      surname
+    }
+  }
+}
+
+query getBookById {
+  book(id:1010) {
+    title
+    author {
+      name
+      surname
+    }
+  }
+}
+
+mutation {
+  createBook(
+    title: "How to Entertain Your Kitten",
+    authorId: 1,
+    publisherId: 1,
+    publishingYear: 2024
+  ) {
+    id
+    title
+    publishingYear
+    author {
+      id
+      name
+      surname
+    }
+    publisher {
+      id
+      name
+    }
+  }
+}
+
+mutation {
+  deleteBook(id:1000) {
+    title
+  }
+}
