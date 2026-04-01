@@ -39,7 +39,7 @@ public class PublishingCompanyRepository {
 
     public PublishingCompany getPublishingCompanyById(Long id) {
         String sql = "SELECT * FROM tpublishingcompany WHERE nPublishingCompanyID = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {)
+        return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             PublishingCompany publishingCompany = new PublishingCompany();
             publishingCompany.setId(rs.getLong("id"));
             publishingCompany.setName(rs.getString("cName"));
