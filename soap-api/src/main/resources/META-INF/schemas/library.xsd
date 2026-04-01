@@ -219,7 +219,9 @@
         </xs:complexType>
     </xs:element>
 
-    <xs:element name="listPublishingCompaniesRequest" type="xs:anyType"/>
+    <xs:element name="listPublishingCompaniesRequest">
+        <xs:complexType/>
+    </xs:element>
 
     <xs:element name="listPublishingCompaniesResponse">
         <xs:complexType>

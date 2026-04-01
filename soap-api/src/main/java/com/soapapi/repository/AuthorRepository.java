@@ -63,32 +63,26 @@ public class AuthorRepository{
     }
 
     public boolean updateAuthor(Long id, String name, String surname) {
+        List<String> sets = new ArrayList<>();
         List<Object> params = new ArrayList<>();
-        StringBuilder sql = new StringBuilder("UPDATE tauthor SET ");
-
-        boolean first = true;
 
         if (name != null) {
-            sql.append(first ? "" : ", ").append("cName = ?");
+            sets.add("cName = ?");
             params.add(name);
-            first = false;
         }
-
         if (surname != null) {
-            sql.append(first ? "" : ", ").append("cSurname = ?");
+            sets.add("cSurname = ?");
             params.add(surname);
-            first = false;
         }
 
-        if (first) {
+        if (sets.isEmpty()) {
             return false;
         }
 
-        sql.append(" WHERE nAuthorId = ?");
+        String sql = "UPDATE tauthor SET " + String.join(", ", sets) + " WHERE nAuthorId = ?";
         params.add(id);
 
-        int rowsAffected = jdbcTemplate.update(sql.toString(), params.toArray());
-        return rowsAffected > 0;
+        return jdbcTemplate.update(sql, params.toArray()) > 0;
     }
 
     public boolean deleteAuthor(Long id) {
