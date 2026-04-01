@@ -90,4 +90,12 @@ public class AuthorRepository{
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }
+
+    public boolean existsById(Long id) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM tauthor WHERE nAuthorID = ?",
+                new Object[]{id},
+                (rs, rowNum) -> rs.next());
+
+    }
 }

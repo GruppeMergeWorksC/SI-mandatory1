@@ -20,25 +20,6 @@ public class BookRepository {
     public Long createBook(Book book) {
         String sql = "INSERT INTO tbook (cTitle, nAuthorId, nPublishingYear, nPublishingCompanyID) VALUES (?, ?, ?, ?)";
 
-        boolean authorExists = jdbcTemplate.queryForObject(
-                "SELECT * FROM tauthor WHERE nAuthorID = ?",
-                new Object[]{book.getAuthorId()},
-                (rs, rowNum) -> rs.next()
-        );
-
-        boolean pubCoExists = jdbcTemplate.queryForObject(
-                "SELECT * FROM tpublishingcompany WHERE nPublishingCompanyID = ?",
-                new Object[]{book.getPublishingCompanyId()},
-                (rs, rowNum) -> rs.next()
-        );
-
-        if(!authorExists) {
-            throw new IllegalArgumentException("Author with ID " + book.getAuthorId() + " does not exist.");
-        }
-        if(!pubCoExists) {
-            throw new IllegalArgumentException("Publishing company with ID " + book.getPublishingCompanyId() + " does not exist.");
-        }
-
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
 
         jdbcTemplate.update(connection -> {

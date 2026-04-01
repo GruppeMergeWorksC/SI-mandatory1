@@ -69,4 +69,11 @@ public class PublishingCompanyRepository {
         return rowsAffected > 0;
     }
 
+    public boolean existsById(Long id) {
+        return jdbcTemplate.queryForObject(
+                "SELECT * FROM tpublishingcompany WHERE nPublishingCompanyID = ?",
+                new Object[]{id},
+                (rs, rowNum) -> rs.next());
+    }
+
 }
