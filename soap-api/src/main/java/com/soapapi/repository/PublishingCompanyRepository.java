@@ -41,7 +41,7 @@ public class PublishingCompanyRepository {
         String sql = "SELECT * FROM tpublishingcompany WHERE nPublishingCompanyID = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             PublishingCompany publishingCompany = new PublishingCompany();
-            publishingCompany.setId(rs.getLong("id"));
+            publishingCompany.setId(rs.getLong("nPublishingCompanyID"));
             publishingCompany.setName(rs.getString("cName"));
             return publishingCompany;
         });
@@ -51,7 +51,7 @@ public class PublishingCompanyRepository {
         String sql = "SELECT * FROM tpublishingcompany";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             PublishingCompany publishingCompany = new PublishingCompany();
-            publishingCompany.setId(rs.getLong("id"));
+            publishingCompany.setId(rs.getLong("nPublishingCompanyID"));
             publishingCompany.setName(rs.getString("cName"));
             return publishingCompany;
         });

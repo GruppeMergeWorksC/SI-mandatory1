@@ -12,12 +12,12 @@
             <xs:element name="title" type="xs:string"/>
             <xs:element name="authorId" type="xs:long"/>
             <xs:element name="publishingCompanyId" type="xs:long"/>
-            <xs:element name="publicationYear" type="tns:pubYear"/>
+            <xs:element name="publishingYear" type="tns:pubYear"/>
         </xs:sequence>
     </xs:complexType>
 
     <xs:simpleType name="pubYear">
-        <xs:restriction base="xs:integer">
+        <xs:restriction base="xs:int">
             <xs:minInclusive value="1900"/>
         </xs:restriction>
     </xs:simpleType>
@@ -43,7 +43,7 @@
                 <xs:element name="title" type="xs:string"/>
                 <xs:element name="authorId" type="xs:long"/>
                 <xs:element name="publishingCompanyId" type="xs:long"/>
-                <xs:element name="publicationYear" type="tns:pubYear"/>
+                <xs:element name="publishingYear" type="tns:pubYear"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -79,7 +79,7 @@
                 <xs:element name="title" type="xs:string" minOccurs="0"/>
                 <xs:element name="authorId" type="xs:long" minOccurs="0"/>
                 <xs:element name="publishingCompanyId" type="xs:long" minOccurs="0"/>
-                <xs:element name="publicationYear" type="tns:pubYear" minOccurs="0"/>
+                <xs:element name="publishingYear" type="tns:pubYear" minOccurs="0"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>

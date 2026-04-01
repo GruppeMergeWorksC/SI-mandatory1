@@ -41,10 +41,10 @@ public class AuthorRepository{
     }
 
     public Author getAuthorById(Long id) {
-        String sql = "SELECT * FROM tauthor WHERE nAuthorId = ?";
+        String sql = "SELECT * FROM tauthor WHERE nAuthorID = ?";
         return jdbcTemplate.queryForObject(sql, new Object[]{id}, (rs, rowNum) -> {
             Author author = new Author();
-            author.setId(rs.getLong("nAuthorId"));
+            author.setId(rs.getLong("nAuthorID"));
             author.setName(rs.getString("cName"));
             author.setSurname(rs.getString("cSurname"));
             return author;
@@ -55,7 +55,7 @@ public class AuthorRepository{
         String sql = "SELECT * FROM tauthor";
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Author author = new Author();
-            author.setId(rs.getLong("nAuthorId"));
+            author.setId(rs.getLong("nAuthorID"));
             author.setName(rs.getString("cName"));
             author.setSurname(rs.getString("cSurname"));
             return author;
@@ -86,7 +86,7 @@ public class AuthorRepository{
     }
 
     public boolean deleteAuthor(Long id) {
-        String sql = "DELETE FROM tauthor WHERE nAuthorId = ?";
+        String sql = "DELETE FROM tauthor WHERE nAuthorID = ?";
         int rowsAffected = jdbcTemplate.update(sql, id);
         return rowsAffected > 0;
     }
