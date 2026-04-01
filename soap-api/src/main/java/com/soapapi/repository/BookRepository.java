@@ -36,7 +36,7 @@ public class BookRepository {
             throw new IllegalArgumentException("Author with ID " + book.getAuthorId() + " does not exist.");
         }
         if(!pubCoExists) {
-            throw new IllegalArgumentException("Publishing company with ID " + book.getPublishingCompanyId());
+            throw new IllegalArgumentException("Publishing company with ID " + book.getPublishingCompanyId() + " does not exist.");
         }
 
         GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
