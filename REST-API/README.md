@@ -15,7 +15,7 @@ Restart Docker image
 docker compose down -v
 docker compose up -d
 ```
-Remove MySQL image
+Remove Docker image
 ```bash
 docker rmi mysql:8.4
 ```

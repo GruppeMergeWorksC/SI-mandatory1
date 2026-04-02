@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
-public class PublisherDto {
-    private Integer id;
-    private String name;
-
+public class BookDto {
 }

@@ -3,5 +3,5 @@ package com.starlords.sirmeows.repo;
 import com.starlords.sirmeows.entity.Publisher;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PublisherRepository extends JpaRepository<Publisher, Long> {
+public interface PublisherRepository extends JpaRepository<Publisher, Integer> {
 }
