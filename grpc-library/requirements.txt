@@ -1,0 +1,4 @@
+# Match grpc_tools-generated stubs (library_pb2_grpc.py checks minimum grpcio).
+grpcio>=1.71.2,<2
+grpcio-tools>=1.71.2,<2
+protobuf>=4.25.0,<6
