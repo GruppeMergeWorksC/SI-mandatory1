@@ -4,7 +4,9 @@ import com.soapapi.library.*;
 import com.soapapi.repository.AuthorRepository;
 import com.soapapi.repository.BookRepository;
 import com.soapapi.repository.PublishingCompanyRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BookService {
 
     BookRepository bookRepository;
@@ -69,9 +71,9 @@ public class BookService {
         return response;
     }
 
-    public DeleteBookResponse deleteBook(Long bookId) {
+    public DeleteBookResponse deleteBook(DeleteBookRequest request) {
         DeleteBookResponse response = new DeleteBookResponse();
-        response.setSuccess(bookRepository.deleteBook(bookId));
+        response.setSuccess(bookRepository.deleteBook(request.getId()));
 
         return response;
     }
