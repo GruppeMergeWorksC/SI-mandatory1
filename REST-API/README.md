@@ -1,9 +1,9 @@
 
 
-## Database:
+## How to Run The Application:
 
-The library database can be either run locally or as a Docker container.
-### Docker:
+The library app can be either run locally or as a Docker container. Docker compose spins up the Library App, MySQL and PhpMyAdmin (MySQL web interface).
+### Docker Setup:
 
 1) Set environment variables noted in dotenv-template.  
 
@@ -37,8 +37,7 @@ docker rmi mysql:8.4
 
  
 ### Inspect the Database
-You can inspect the database by MySQL Workbench, from CLI or from PhpMyAdmin Web Interface, which spins up together with the dockerized database.  
-PhpMyAdmin: http://localhost:8090/
+You can inspect the database by MySQL Workbench, from CLI or from PhpMyAdmin Web Interface: http://localhost:8090/
 ```sql
 SHOW DATABASES;
 ```
