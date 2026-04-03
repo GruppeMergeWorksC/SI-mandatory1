@@ -1,0 +1,38 @@
+{
+  "name": "SI-Library-REST",
+  "variables": [
+    {
+      "name": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "publisherId",
+      "value": "1",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "authorId",
+      "value": "22",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    },
+    {
+      "name": "bookId",
+      "value": "1020",
+      "type": "text",
+      "enabled": true,
+      "secret": false
+    }
+  ],
+  "info": {
+    "type": "bruno-environment",
+    "exportedAt": "2026-04-03T13:55:24.649Z",
+    "exportedUsing": "Bruno/v3.2.0"
+  }
+}

@@ -29,7 +29,7 @@ public class AuthorService {
     }
 
     private void handleAuthorExists(Author author) {
-        // Handle Author exists, accounting for authors with no surname
+        // Handle Author exists, accounting for authors with no surname fx. Plato
         var name = author.getName();
         var surname = author.getSurname();
 
