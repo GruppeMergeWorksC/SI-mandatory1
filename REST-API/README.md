@@ -5,7 +5,22 @@
 The library database can be either run locally or as a Docker container.
 ### Docker:
 
-1) Set environment variables noted in dotenv-template.
+1) Set environment variables noted in dotenv-template.  
+
+Check if env vars are set in the shell
+```bash
+echo $MYSQL_ROOT_PASSWORD
+echo $MYSQL_USER
+echo $MYSQL_PASSWORD
+```
+
+Set env vars
+```bash
+export MYSQL_ROOT_PASSWORD=yourrootpassword
+export MYSQL_USER=youruser
+export MYSQL_PASSWORD=yourpassword
+```
+
 2) Build the image from docker-compose
 ```bash
 docker compose up -d

@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Publisher {
+public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -14,4 +14,7 @@ public class Publisher {
     @Column(nullable = false, length = 40)
     @NotBlank
     private String name;
+
+    @Column(length = 60)
+    private String surname;
 }

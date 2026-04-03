@@ -12,7 +12,6 @@ import java.util.Collection;
 @AllArgsConstructor
 @Service
 public class PublisherService {
-
     private final PublisherRepository publisherRepository;
 
     public Collection<Publisher> findAll() {
