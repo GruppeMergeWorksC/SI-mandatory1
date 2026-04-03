@@ -2,6 +2,7 @@ package com.soapapi.endpoint;
 
 import com.soapapi.library.*;
 import com.soapapi.service.PublishingCompanyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -15,6 +16,7 @@ public class PublishingCompanyEndpoint {
     PublishingCompanyService publishingCompanyService;
 
     public PublishingCompanyEndpoint(PublishingCompanyService publishingCompanyService) {
+        this.publishingCompanyService = publishingCompanyService;
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "createPublishingCompanyRequest")

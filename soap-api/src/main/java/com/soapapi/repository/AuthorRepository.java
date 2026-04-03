@@ -91,11 +91,13 @@ public class AuthorRepository{
         return rowsAffected > 0;
     }
 
-    public boolean existsById(Long id) {
-        return jdbcTemplate.queryForObject(
-                "SELECT * FROM tauthor WHERE nAuthorID = ?",
-                new Object[]{id},
-                (rs, rowNum) -> rs.next());
-
+    public boolean existsById(Long authorId) {
+        String sql = "SELECT COUNT(*) FROM tauthor WHERE nAuthorID = ?";
+        Integer count = jdbcTemplate.queryForObject(
+                sql,
+                Integer.class,
+                authorId
+        );
+        return count != null && count > 0;
     }
 }

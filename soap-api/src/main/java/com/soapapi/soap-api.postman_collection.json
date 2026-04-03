@@ -1,0 +1,564 @@
+{
+  "info": {
+    "_postman_id": "008f0817-5fda-4e44-af09-9e38c9ffb376",
+    "name": "soap-api",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "29482344",
+    "_collection_link": "https://go.postman.co/collection/29482344-008f0817-5fda-4e44-af09-9e38c9ffb376?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Author",
+      "item": [
+        {
+          "name": "ListAllAuthors",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:listAuthorsRequest/>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetAuthorById",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:getAuthorByIdRequest>\r\n         <lib:id>7622</lib:id>\r\n      </lib:getAuthorByIdRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateAuthor",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:createAuthorRequest>\r\n         <lib:name>name</lib:name>\r\n         <lib:surname>surname</lib:surname>\r\n      </lib:createAuthorRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateAuthor",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:updateAuthorRequest>\r\n         <lib:id>14</lib:id>\r\n        <lib:name></lib:name>\r\n         <lib:surname>newSurname</lib:surname>\r\n      </lib:updateAuthorRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteAuthor",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:deleteAuthorRequest>\r\n         <lib:id>512</lib:id>\r\n      </lib:deleteAuthorRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Book",
+      "item": [
+        {
+          "name": "GetBookById",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:getBookByIdRequest>\r\n         <lib:id>1008</lib:id>\r\n      </lib:getBookByIdRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreateBook",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:createBookRequest>\r\n         <lib:title>newBook</lib:title>\r\n         <lib:authorId>32</lib:authorId>\r\n         <lib:publishingCompanyId>58</lib:publishingCompanyId>\r\n         <lib:publicationYear>2010</lib:publicationYear>\r\n      </lib:createBookRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdateBook",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:updateBookRequest>\r\n         <lib:id>2002</lib:id>\r\n         <lib:title>2000</lib:title>\r\n         <lib:authorId></lib:authorId>\r\n         <lib:publishingCompanyId></lib:publishingCompanyId>\r\n         <lib:publishingYear></lib:publishingYear>\r\n      </lib:updateBookRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeleteBook",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:deleteBookRequest>\r\n         <lib:id>2003</lib:id>\r\n      </lib:deleteBookRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "PublishingCompany",
+      "item": [
+        {
+          "name": "ListAllPublishingCompanies",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:listPublishingCompaniesRequest/>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GetPublishingCompanyById",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:getPublishingCompanyByIdRequest>\r\n         <lib:id>5</lib:id>\r\n      </lib:getPublishingCompanyByIdRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "CreatePublishingCompany",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:createPublishingCompanyRequest>\r\n         <lib:name>newCompany</lib:name>\r\n      </lib:createPublishingCompanyRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "UpdatePublishingCompany",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:updatePublishingCompanyRequest>\r\n         <lib:id>159</lib:id>\r\n         <lib:name>newNewName</lib:name>\r\n      </lib:updatePublishingCompanyRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "DeletePublishingCompany",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {
+              "content-type": true
+            }
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/xml",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:lib=\"https://soapapi.com/library\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <lib:deletePublishingCompanyRequest>\r\n         <lib:id>159</lib:id>\r\n      </lib:deletePublishingCompanyRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>",
+              "options": {
+                "raw": {
+                  "language": "xml"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BACKEND_URL}}/services",
+              "host": [
+                "{{BACKEND_URL}}"
+              ],
+              "path": [
+                "services"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "WSDL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/services/libraryWsdl.wsdl",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "services",
+            "libraryWsdl.wsdl"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

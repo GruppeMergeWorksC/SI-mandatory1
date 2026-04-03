@@ -33,7 +33,7 @@ public class AuthorEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "listAuthorsRequest")
     @ResponsePayload
     public ListAuthorsResponse getAllAuthors(@RequestPayload ListAuthorsRequest request) {
-        return authorService.getAllAuthors();
+        return authorService.listAllAuthors();
     }
 
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "updateAuthorRequest")

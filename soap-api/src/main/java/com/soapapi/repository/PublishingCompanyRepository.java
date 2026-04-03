@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -58,9 +59,22 @@ public class PublishingCompanyRepository {
     }
 
     public boolean updatePublishingCompany(Long id, String name) {
-        String sql = "UPDATE tpublishingcompany SET cName = ? WHERE nPublishingCompanyID = ?";
-        int rowsAffected = jdbcTemplate.update(sql, name, id);
-        return rowsAffected > 0;
+        List<String> sets = new ArrayList<>();
+        List<Object> params = new ArrayList<>();
+
+        if(name != null) {
+            sets.add("cName = ?");
+            params.add(name);
+        }
+
+        if(sets.isEmpty()) {
+            return false;
+        }
+
+        String sql = "UPDATE tpublishingcompany SET " + String.join(", ", sets) + " WHERE nPublishingCompanyID = ?";
+        params.add(id);
+
+        return jdbcTemplate.update(sql, params.toArray()) > 0;
     }
 
     public boolean deletePublishingCompany(Long id) {
@@ -69,11 +83,14 @@ public class PublishingCompanyRepository {
         return rowsAffected > 0;
     }
 
-    public boolean existsById(Long id) {
-        return jdbcTemplate.queryForObject(
-                "SELECT * FROM tpublishingcompany WHERE nPublishingCompanyID = ?",
-                new Object[]{id},
-                (rs, rowNum) -> rs.next());
+    public boolean existsById(Long pubCoId) {
+        String sql = "SELECT COUNT(*) FROM tpublishingcompany WHERE nPublishingCompanyID = ?";
+        Integer count = jdbcTemplate.queryForObject(
+                sql,
+                Integer.class,
+                pubCoId
+        );
+        return count != null && count > 0;
     }
 
 }

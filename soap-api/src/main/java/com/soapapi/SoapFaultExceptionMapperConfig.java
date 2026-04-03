@@ -23,10 +23,10 @@ import javax.xml.namespace.QName;
 import java.util.Properties;
 
 @Configuration
-public class SoapFaultConfig {
+public class SoapFaultExceptionMapperConfig {
 
     public static final String NS = "https://soapapi.com/library";
-    private static final Logger log = LoggerFactory.getLogger(SoapFaultConfig.class);
+    private static final Logger log = LoggerFactory.getLogger(SoapFaultExceptionMapperConfig.class);
 
     @Bean
     public SoapFaultMappingExceptionResolver soapFaultMappingExceptionResolver() {
