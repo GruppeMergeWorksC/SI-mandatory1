@@ -1,6 +1,6 @@
 package com.soapapi.repository;
 
-
+import com.soapapi.exception.ValidationException;
 import com.soapapi.library.Author;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -67,10 +67,12 @@ public class AuthorRepository{
         List<Object> params = new ArrayList<>();
 
         if (name != null) {
+            if(name.isBlank()){return false;}
             sets.add("cName = ?");
             params.add(name);
         }
         if (surname != null) {
+            if(surname.isBlank()){return false;}
             sets.add("cSurname = ?");
             params.add(surname);
         }

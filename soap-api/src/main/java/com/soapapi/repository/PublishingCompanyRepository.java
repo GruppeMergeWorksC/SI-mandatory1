@@ -63,6 +63,7 @@ public class PublishingCompanyRepository {
         List<Object> params = new ArrayList<>();
 
         if(name != null) {
+            if(name.isBlank()){return false;}
             sets.add("cName = ?");
             params.add(name);
         }

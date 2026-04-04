@@ -58,18 +58,19 @@ public class BookRepository {
         List<Object> params = new ArrayList<>();
 
         if(title != null) {
+            if(title.isBlank()){return false;}
             sets.add("cTitle = ?");
             params.add(title);
         }
-        if(authorId != null) {
+        if(authorId != null && authorId > 0) {
             sets.add("nAuthorID = ?");
             params.add(authorId);
         }
-        if(publishingYear != null && publishingYear > 0) {
+        if(publishingYear != null) {
             sets.add("nPublishingYear = ?");
             params.add(publishingYear);
         }
-        if(publishingCompanyId != null) {
+        if(publishingCompanyId != null && publishingCompanyId > 0) {
             sets.add("nPublishingCompanyID = ?");
             params.add(publishingCompanyId);
         }

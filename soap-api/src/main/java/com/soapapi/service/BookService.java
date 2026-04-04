@@ -6,18 +6,15 @@ import com.soapapi.library.*;
 import com.soapapi.repository.AuthorRepository;
 import com.soapapi.repository.BookRepository;
 import com.soapapi.repository.PublishingCompanyRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
-import static com.soapapi.utils.FieldsValidator.validateFields;
+import static com.soapapi.validator.FieldsValidator.validateFields;
 
 @Service
 public class BookService {
 
-    private static final Logger log = LoggerFactory.getLogger(BookService.class);
     BookRepository bookRepository;
     AuthorRepository authorRepository;
     PublishingCompanyRepository publishingCompanyRepository;
@@ -28,27 +25,31 @@ public class BookService {
         this.publishingCompanyRepository = publishingCompanyRepository;
     }
 
-    public CreateBookResponse createBook(CreateBookRequest createBookRequest) {
+    public CreateBookResponse createBook(CreateBookRequest request) {
         Map<String, Object> requiredFields = Map.of(
-                "title", createBookRequest.getTitle(),
-                "authorId", createBookRequest.getAuthorId(),
-                "publishingYear", createBookRequest.getPublishingYear(),
-                "publishingCompanyId", createBookRequest.getPublishingCompanyId()
+                "title", request.getTitle(),
+                "authorId", request.getAuthorId(),
+                "publishingYear", request.getPublishingYear(),
+                "publishingCompanyId", request.getPublishingCompanyId()
         );
 
         validateFields(requiredFields);
 
-        boolean authorExists = authorRepository.existsById(createBookRequest.getAuthorId());
-        boolean publishingCompanyExists = publishingCompanyRepository.existsById(createBookRequest.getPublishingCompanyId());
+        boolean authorExists = authorRepository.existsById(request.getAuthorId());
+        boolean publishingCompanyExists = publishingCompanyRepository.existsById(request.getPublishingCompanyId());
 
         CreateBookResponse response = new CreateBookResponse();
 
         if(authorExists && publishingCompanyExists){
             Book book = new Book();
-            book.setTitle(createBookRequest.getTitle());
-            book.setAuthorId(createBookRequest.getAuthorId());
-            book.setPublishingYear(createBookRequest.getPublishingYear());
-            book.setPublishingCompanyId(createBookRequest.getPublishingCompanyId());
+            book.setTitle(request.getTitle());
+            book.setAuthorId(request.getAuthorId());
+            book.setPublishingYear(request.getPublishingYear());
+            book.setPublishingCompanyId(request.getPublishingCompanyId());
+
+            if(request.getPublishingYear() < 1900){
+                throw new ValidationException("Publishing year must be 1900 or above");
+            }
 
             Long bookId = bookRepository.createBook(book);
 
@@ -85,8 +86,13 @@ public class BookService {
 
         UpdateBookResponse response = new UpdateBookResponse();
 
-        if((authorFieldProvided && !authorExists) || (publishingCompanyFieldProvided && !publishingCompanyExists)) {
+        if((authorFieldProvided && !authorExists) ||
+                (publishingCompanyFieldProvided && !publishingCompanyExists)) {
             throw new NotFoundException("Author or Publishing Company does not exist.");
+        }
+
+        if(request.getPublishingYear() < 1900){
+            throw new ValidationException("Publishing year must be 1900 or above");
         }
 
         boolean isSuccess = bookRepository.updateBook(
@@ -100,7 +106,7 @@ public class BookService {
         response.setSuccess(isSuccess);
 
         if(!isSuccess) {
-            throw new ValidationException("Error updating book. No fields provided for update.");
+            throw new ValidationException("Error updating book. No fields provided for update or at least one of the provided text fields is empty");
         }
 
         return response;

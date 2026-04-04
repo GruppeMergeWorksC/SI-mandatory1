@@ -1,4 +1,4 @@
-package com.soapapi.utils;
+package com.soapapi.validator;
 
 import com.soapapi.exception.ValidationException;
 
@@ -15,7 +15,7 @@ public class FieldsValidator {
                 .filter(entry -> entry.getValue() == null || entry.getValue().toString().trim().isEmpty())
                 .map(Map.Entry::getKey)
                 .toList();
-        if(!missingFields.isEmpty()){
+    if(!missingFields.isEmpty()){
             throw new ValidationException("Missing or empty required fields: " + String.join(", ", missingFields));
         }
     }

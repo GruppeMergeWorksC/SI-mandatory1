@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
-import static com.soapapi.utils.FieldsValidator.validateFields;
+import static com.soapapi.validator.FieldsValidator.validateFields;
 
 @Service
 public class PublishingCompanyService {
@@ -78,7 +78,7 @@ public class PublishingCompanyService {
         response.setSuccess(isSuccess);
 
         if(!isSuccess){
-            throw new ValidationException("Error updating publishing company. No fields provided for update.");
+            throw new ValidationException("Error updating publishing company. No fields provided for update or at least one of the provided text fields is empty");
         }
 
         return response;
