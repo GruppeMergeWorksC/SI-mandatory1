@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package library.v1;
+
+// Library catalogue gRPC API.
+service LibraryService {
+  // Returns a single book by primary key, or NOT_FOUND.
+  rpc GetBookById(GetBookByIdRequest) returns (Book);
+
+  // Inserts a book; returns the new id. Validates author and publisher exist.
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
+
+  // Server streaming: each subscriber receives every book created by any client
+  // for the lifetime of this call (until the client disconnects).
+  rpc WatchBooks(WatchBooksRequest) returns (stream Book);
+}
+
+message Book {
+  int32 id = 1;
+  string title = 2;
+  int32 author_id = 3;
+  int32 publishing_company_id = 4;
+  int32 publishing_year = 5;
+}
+
+message GetBookByIdRequest {
+  int32 book_id = 1;
+}
+
+message CreateBookRequest {
+  string title = 1;
+  int32 author_id = 2;
+  int32 publishing_company_id = 3;
+  int32 publishing_year = 4;
+}
+
+message CreateBookResponse {
+  int32 book_id = 1;
+}
+
+// Empty; reserved for future filters.
+message WatchBooksRequest {}
