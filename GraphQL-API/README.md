@@ -2,7 +2,7 @@
 
 Clone the repository
 ```bash
-git clone git@github.com:GruppeMergeWorksC/SI-mandatory1.git
+git clone git@github.com:GroupMergeWorksD/SI-mandatory1.git
 ```
 
 Navigate to the GraphQL-API directory
