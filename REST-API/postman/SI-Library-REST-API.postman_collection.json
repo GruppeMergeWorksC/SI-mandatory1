@@ -1,31 +1,32 @@
 {
   "info": {
+    "_postman_id": "117d6d16-faf0-4709-9daf-15fbb9a6281a",
     "name": "SI-Library-REST-API",
-    "description": null,
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "19470254"
   },
   "item": [
     {
       "name": "authors-create-already-exists-name-and-surname",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              "pm.environment.set(\"newAuthId\", pm.response.body.id)"
+            ]
+          }
+        }
+      ],
       "request": {
-        "method": "POST",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/authors",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "authors"
-          ],
-          "query": [],
-          "variable": []
-        },
+        "method": "POST",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"name\": \"Oscar\",\n  \"surname\": \"Wilde\"\n}",
@@ -34,8 +35,21 @@
               "language": "json"
             }
           }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/authors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "authors"
+          ]
         }
       },
+      "response": []
+    },
+    {
+      "name": "authors-create-already-exists-name",
       "event": [
         {
           "listen": "test",
@@ -48,29 +62,13 @@
             ]
           }
         }
-      ]
-    },
-    {
-      "name": "authors-create-already-exists-name",
+      ],
       "request": {
-        "method": "POST",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/authors",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "authors"
-          ],
-          "query": [],
-          "variable": []
-        },
+        "method": "POST",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"name\": \"Plato\"\n}",
@@ -79,8 +77,21 @@
               "language": "json"
             }
           }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/authors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "authors"
+          ]
         }
       },
+      "response": []
+    },
+    {
+      "name": "authors-create",
       "event": [
         {
           "listen": "test",
@@ -93,29 +104,13 @@
             ]
           }
         }
-      ]
-    },
-    {
-      "name": "authors-create",
+      ],
       "request": {
-        "method": "POST",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/authors",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "authors"
-          ],
-          "query": [],
-          "variable": []
-        },
+        "method": "POST",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"name\": \"Bobby\",\n  \"surname\": \"MacFlufftail\"\n}",
@@ -124,115 +119,89 @@
               "language": "json"
             }
           }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/authors",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "authors"
+          ]
         }
       },
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              "pm.environment.set(\"newAuthId\", pm.response.body.id)"
-            ]
-          }
-        }
-      ]
+      "response": []
     },
     {
       "name": "authors-delete",
       "request": {
-        "method": "DELETE",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "DELETE",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/authors/511",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "authors",
             "511"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "authors-get-all",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/authors",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "authors"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "authors-get-by-id",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/authors/225",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "authors",
             "225"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "authors-update",
       "request": {
-        "method": "PATCH",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/authors/1",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "authors",
-            "1"
-          ],
-          "query": [],
-          "variable": []
-        },
+        "method": "PATCH",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"name\": \"Percival\",\n  \"surname\": \"Fredrickstein von Musel Klossowski de Rolo III\"\n}",
@@ -241,31 +210,28 @@
               "language": "json"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "publisher-update",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "auth": {
-          "type": "noauth"
         },
-        "description": "",
         "url": {
-          "raw": "{{baseUrl}}/publishers/159",
-          "protocol": "",
+          "raw": "{{baseUrl}}/authors/1",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "publishers",
-            "159"
-          ],
-          "query": [],
-          "variable": []
+            "authors",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "publisher-update",
+      "request": {
+        "auth": {
+          "type": "noauth"
         },
+        "method": "PATCH",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"id\": 159,\n  \"name\": \"Fabulous Rainbow Unicorn Publisher\"\n}",
@@ -274,40 +240,22 @@
               "language": "json"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "publishers-create",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "auth": {
-          "type": "noauth"
         },
-        "description": "",
         "url": {
-          "raw": "{{baseUrl}}/publishers",
-          "protocol": "",
+          "raw": "{{baseUrl}}/publishers/159",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "publishers"
-          ],
-          "query": [],
-          "variable": []
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Sir Kitty's Noble Publishing House\"\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+            "publishers",
+            "159"
+          ]
         }
       },
+      "response": []
+    },
+    {
+      "name": "publishers-create",
       "event": [
         {
           "listen": "test",
@@ -320,96 +268,111 @@
             ]
           }
         }
-      ]
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Sir Kitty's Noble Publishing House\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/publishers",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "publishers"
+          ]
+        }
+      },
+      "response": []
     },
     {
       "name": "publishers-delete",
       "request": {
-        "method": "DELETE",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "DELETE",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/publishers/159",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "publishers",
             "159"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "publishers-get-all",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/publishers",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "publishers"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "publishers-get-by-id",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/publishers/1",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "publishers",
             "1"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "books-get-page",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/books?limit=25&offset=50",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "books?limit=25&offset=50"
+            "books"
           ],
           "query": [
             {
@@ -420,28 +383,26 @@
               "key": "offset",
               "value": "50"
             }
-          ],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "books-get-page-illegal-limit",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/books?limit=0&offset=50",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "books?limit=0&offset=50"
+            "books"
           ],
           "query": [
             {
@@ -452,28 +413,26 @@
               "key": "offset",
               "value": "50"
             }
-          ],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "books-get-page-illegal-offset",
       "request": {
-        "method": "GET",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "GET",
+        "header": [],
         "url": {
           "raw": "{{baseUrl}}/books?limit=25&offset=-1",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "books?limit=25&offset=-1"
+            "books"
           ],
           "query": [
             {
@@ -484,32 +443,32 @@
               "key": "offset",
               "value": "-1"
             }
-          ],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
       "name": "book-create",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              "pm.environment.set(\"newBookId\", pm.response.body.id)"
+            ]
+          }
+        }
+      ],
       "request": {
-        "method": "POST",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/books",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "books"
-          ],
-          "query": [],
-          "variable": []
-        },
+        "method": "POST",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"Fluffy Kittens in Adventure Land\",\n  \"authorId\": 467,\n  \"publisherId\": 18,\n  \"publishingYear\": 2026\n}",
@@ -518,116 +477,90 @@
               "language": "json"
             }
           }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
         }
       },
-      "event": [
-        {
-          "listen": "test",
-          "script": {
-            "type": "text/javascript",
-            "packages": {},
-            "requests": {},
-            "exec": [
-              "pm.environment.set(\"newBookId\", pm.response.body.id)"
-            ]
-          }
-        }
-      ]
+      "response": []
     },
     {
       "name": "books-get-by-id",
       "request": {
+        "auth": {
+          "type": "noauth"
+        },
         "method": "GET",
         "header": [],
-        "auth": {
-          "type": "noauth"
-        },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/books/1017",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "books",
-            "1017"
-          ],
-          "query": [],
-          "variable": []
-        }
-      }
-    },
-    {
-      "name": "books-delete",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "auth": {
-          "type": "noauth"
-        },
-        "description": "",
-        "url": {
-          "raw": "{{baseUrl}}/books/394",
-          "protocol": "",
-          "host": [
-            "{{baseUrl}}"
-          ],
-          "path": [
-            "books",
-            "394"
-          ],
-          "query": [],
-          "variable": []
-        }
-      }
-    },
-    {
-      "name": "books-get-by-id-new",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "auth": {
-          "type": "noauth"
-        },
-        "description": "",
         "url": {
           "raw": "{{baseUrl}}/books/2000",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "books",
             "2000"
-          ],
-          "query": [],
-          "variable": []
+          ]
         }
-      }
+      },
+      "response": []
     },
     {
-      "name": "books-update",
+      "name": "books-delete",
       "request": {
-        "method": "PATCH",
-        "header": [],
         "auth": {
           "type": "noauth"
         },
-        "description": "",
+        "method": "DELETE",
+        "header": [],
         "url": {
-          "raw": "{{baseUrl}}/books/1003",
-          "protocol": "",
+          "raw": "{{baseUrl}}/books/2000",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "books",
-            "1003"
-          ],
-          "query": [],
-          "variable": []
+            "2000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "books-get-by-id-not-found",
+      "request": {
+        "auth": {
+          "type": "noauth"
         },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/2000",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "2000"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "books-update",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"Flying Wizard Kettle Hop\",\n  \"authorId\": 394,\n  \"publisherId\": 18,\n  \"publishingYear\": 1950\n}",
@@ -636,31 +569,49 @@
               "language": "json"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "books-update-author-not-found",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "auth": {
-          "type": "noauth"
         },
-        "description": "",
         "url": {
           "raw": "{{baseUrl}}/books/1003",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "books",
             "1003"
-          ],
-          "query": [],
-          "variable": []
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "books-get-by-id-updated",
+      "request": {
+        "auth": {
+          "type": "noauth"
         },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/books/1003",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books",
+            "1003"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "books-update-author-not-found",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PATCH",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"Flying Wizard Kettle Hop\",\n  \"authorId\": 100000000,\n  \"publisherId\": 18,\n  \"publishingYear\": 1950\n}",
@@ -669,31 +620,28 @@
               "language": "json"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "books-update-publisher-not-found",
-      "request": {
-        "method": "PATCH",
-        "header": [],
-        "auth": {
-          "type": "noauth"
         },
-        "description": "",
         "url": {
           "raw": "{{baseUrl}}/books/1003",
-          "protocol": "",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
             "books",
             "1003"
-          ],
-          "query": [],
-          "variable": []
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "books-update-publisher-not-found",
+      "request": {
+        "auth": {
+          "type": "noauth"
         },
+        "method": "PATCH",
+        "header": [],
         "body": {
           "mode": "raw",
           "raw": "{\n  \"title\": \"Flying Wizard Kettle Hop\",\n  \"authorId\": 394,\n  \"publisherId\": 10000000,\n  \"publishingYear\": 1950\n}",
@@ -702,40 +650,22 @@
               "language": "json"
             }
           }
-        }
-      }
-    },
-    {
-      "name": "book-create-publishingyear-too-early",
-      "request": {
-        "method": "POST",
-        "header": [],
-        "auth": {
-          "type": "noauth"
         },
-        "description": "",
         "url": {
-          "raw": "{{baseUrl}}/books",
-          "protocol": "",
+          "raw": "{{baseUrl}}/books/1003",
           "host": [
             "{{baseUrl}}"
           ],
           "path": [
-            "books"
-          ],
-          "query": [],
-          "variable": []
-        },
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"title\": \"Fluffy Kittens in Adventure Land\",\n  \"authorId\": 467,\n  \"publisherId\": 18,\n  \"publishingYear\": 100\n}",
-          "options": {
-            "raw": {
-              "language": "json"
-            }
-          }
+            "books",
+            "1003"
+          ]
         }
       },
+      "response": []
+    },
+    {
+      "name": "book-create-publishingyear-too-early",
       "event": [
         {
           "listen": "test",
@@ -748,24 +678,47 @@
             ]
           }
         }
-      ]
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Fluffy Kittens in Adventure Land\",\n  \"authorId\": 467,\n  \"publisherId\": 18,\n  \"publishingYear\": 100\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/books",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "books"
+          ]
+        }
+      },
+      "response": []
     }
   ],
   "variable": [
     {
       "key": "baseUrl",
-      "value": "",
-      "type": "default"
+      "value": ""
     },
     {
       "key": "newPubId",
-      "value": "",
-      "type": "default"
+      "value": ""
     },
     {
       "key": "newBookId",
-      "value": "",
-      "type": "default"
+      "value": ""
     }
   ]
 }
